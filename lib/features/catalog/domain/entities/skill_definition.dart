@@ -7,15 +7,15 @@ final class SkillDefinition {
   final String name;
   final String description;
   final SkillType type;
-  final CardSuit suit;
-  final CardValue value;
+  final CardSuit naipe;
+  final CardValue valor;
 
   const SkillDefinition({
     required this.id,
     required this.name,
     required this.description,
     required this.type,
-    required this.suit,
-    required this.value,
+    required this.naipe,
+    required this.valor,
   });
 }
