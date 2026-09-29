@@ -1,9 +1,11 @@
 import '../../error/app_exception.dart';
 
-enum ViewState<T> {
-  ViewStatus status = ViewStatus.idle,
-  T? data,
-  AppException? error,
+enum ViewStatus { idle, loading, success, failure }
+
+class ViewState<T> {
+  ViewStatus status = ViewStatus.idle;
+  T? data;
+  AppException? error;
 
   ViewState();
 
@@ -13,6 +15,7 @@ enum ViewState<T> {
 
   void setLoading([T? data]) {
     status = ViewStatus.loading;
+    error = null;
     if (data != null) this.data = data;
   }
 
@@ -30,7 +33,6 @@ enum ViewState<T> {
 
   bool get isIdle => status == ViewStatus.idle;
   bool get isLoading => status == ViewStatus.loading;
-  bool get isSuccess => status == ViewStatus.success; 
-  bool get isFailure => status == ViewStatus.failure; 
+  bool get isSuccess => status == ViewStatus.success;
+  bool get isFailure => status == ViewStatus.failure;
 }
-
