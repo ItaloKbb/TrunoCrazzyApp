@@ -6,15 +6,15 @@ final class GameCard {
   /// Presente so nas cartas da propria mao; unico ID aceito ao jogar.
   final int? handCardId;
   final int catalogCardId;
-  final CardValue value;
-  final CardSuit suit;
+  final CardValue valor;
+  final CardSuit naipe;
   final SkillType? skill;
 
   const GameCard({
     this.handCardId,
     required this.catalogCardId,
-    required this.value,
-    required this.suit,
+    required this.valor,
+    required this.naipe,
     this.skill,
   });
 }
