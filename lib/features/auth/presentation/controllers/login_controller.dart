@@ -17,10 +17,14 @@ class LoginController extends ChangeNotifier {
     if (_state.isLoading) return;
     final credentials = LoginCredentials(nickname: nickname, code: code);
     if (!credentials.isValid) {
-      _emit(const LoginState.failure(BadRequestException(
-        message:
-            'Informe um apelido (até 30 caracteres) e um código de 4 a 30 caracteres.',
-      )));
+      _emit(
+        const LoginState.failure(
+          BadRequestException(
+            message:
+                'Informe um apelido (até 30 caracteres) e um código de 4 a 30 caracteres.',
+          ),
+        ),
+      );
       return;
     }
     _emit(const LoginState.loading());
