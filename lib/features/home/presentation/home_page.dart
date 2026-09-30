@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import '../../auth/domain/entities/auth_session.dart';
 import '../../catalog/domain/usecases/list_cards_usecase.dart';
-import '../../catalogo/presentation/catalogo_page.dart';
+import '../../catalog/presentation/pages/catalogo_page.dart';
 
 /// Tela inicial provisória após o login.
 class HomePage extends StatelessWidget {

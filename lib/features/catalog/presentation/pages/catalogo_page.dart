@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
-import '../../../core/error/app_exception.dart';
-import '../../catalog/domain/entities/catalog_card.dart';
-import '../../catalog/domain/usecases/list_cards_usecase.dart';
-import '../../game/domain/enums/card_suit.dart';
-import '../../game/domain/enums/card_value.dart';
+import '../../../../core/error/app_exception.dart';
+import '../../domain/entities/catalog_card.dart';
+import '../../domain/usecases/list_cards_usecase.dart';
+import '../../../game/domain/enums/card_suit.dart';
+import '../../../game/domain/enums/card_value.dart';
 
 /// Baralho oficial vindo de `GET /cards`.
 class CatalogoPage extends StatefulWidget {
