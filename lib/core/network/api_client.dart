@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../error/app_exception.dart';
@@ -20,13 +19,13 @@ class ApiClient {
 
   static const String _envBaseUrl = String.fromEnvironment('API_BASE_URL');
 
+  static const String _codespacesUrl =
+      'https://verbose-broccoli-p5wx9jvjpqq3674g-3000.app.github.dev';
+
+  /// Pode ser sobrescrita com `--dart-define=API_BASE_URL=...`.
   static String get defaultBaseUrl {
-    if (_envBaseUrl.isNotEmpty) return _envBaseUrl;
-    // O emulador Android enxerga o host em 10.0.2.2.
-    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-      return 'http://10.0.2.2:3000';
-    }
-    return 'http://localhost:3000';
+    final url = _envBaseUrl.isNotEmpty ? _envBaseUrl : _codespacesUrl;
+    return url.endsWith('/') ? url.substring(0, url.length - 1) : url;
   }
 
   final http.Client _client;

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../../auth/domain/entities/auth_session.dart';
+import '../../catalog/domain/usecases/list_cards_usecase.dart';
 import '../../catalogo/presentation/catalogo_page.dart';
 
 /// Tela inicial provisória após o login.
 class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.session, required this.onLogout});
+  const HomePage({
+    super.key,
+    required this.session,
+    required this.onLogout,
+    required this.listCards,
+  });
 
   final AuthSession session;
   final VoidCallback onLogout;
+  final ListCardsUseCase listCards;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class HomePage extends StatelessWidget {
             title: const Text('Pontos de ranking'),
             trailing: Text('${session.user.rankingPoints}'),
           ),
-          const Expanded(child: CatalogoPage()),
+          Expanded(child: CatalogoPage(listCards: listCards)),
         ],
       ),
     );

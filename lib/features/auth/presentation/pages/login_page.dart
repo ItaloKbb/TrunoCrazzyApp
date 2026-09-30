@@ -85,9 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                           controller: _nickname,
                           enabled: !state.isLoading,
                           textInputAction: TextInputAction.next,
+                          autofillHints: const [AutofillHints.username],
                           maxLength: LoginCredentials.maxNicknameLength,
                           decoration: const InputDecoration(
                             labelText: 'Apelido',
+                            prefixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(),
                           ),
                           validator: (v) => (v == null || v.trim().isEmpty)
@@ -100,11 +102,15 @@ class _LoginPageState extends State<LoginPage> {
                           enabled: !state.isLoading,
                           obscureText: _obscure,
                           maxLength: LoginCredentials.maxCodeLength,
+                          autofillHints: const [AutofillHints.password],
+                          textInputAction: TextInputAction.done,
                           onFieldSubmitted: (_) => _submit(),
                           decoration: InputDecoration(
                             labelText: 'Código',
+                            prefixIcon: const Icon(Icons.lock),
                             border: const OutlineInputBorder(),
                             suffixIcon: IconButton(
+                              tooltip: _obscure ? 'Mostrar código' : 'Ocultar código',
                               icon: Icon(_obscure
                                   ? Icons.visibility
                                   : Icons.visibility_off),
@@ -124,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 8),
                           Text(
                             state.error?.message ?? '',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.error,
                             ),

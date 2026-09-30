@@ -9,6 +9,8 @@ import 'features/auth/domain/usecases/get_current_session_usecase.dart';
 import 'features/auth/domain/usecases/login_usecase.dart';
 import 'features/auth/presentation/controllers/login_controller.dart';
 import 'features/auth/presentation/pages/login_page.dart';
+import 'features/catalog/data/repositories/card_catalog_repository_impl.dart';
+import 'features/catalog/domain/usecases/list_cards_usecase.dart';
 import 'features/home/presentation/home_page.dart';
 
 void main() => runApp(const TrunoCrazyApp());
@@ -26,6 +28,7 @@ class _TrunoCrazyAppState extends State<TrunoCrazyApp> {
   late final LoginUseCase _login;
   late final GetCurrentSessionUseCase _getSession;
   late final ClearSessionUseCase _clearSession;
+  late final ListCardsUseCase _listCards;
 
   AuthSession? _session;
   bool _loading = true;
@@ -42,6 +45,7 @@ class _TrunoCrazyAppState extends State<TrunoCrazyApp> {
     _login = LoginUseCase(AuthRepositoryImpl(_api), _sessions);
     _getSession = GetCurrentSessionUseCase(_sessions);
     _clearSession = ClearSessionUseCase(_sessions);
+    _listCards = ListCardsUseCase(CardCatalogRepositoryImpl(_api));
     _restore();
   }
 
@@ -75,7 +79,11 @@ class _TrunoCrazyAppState extends State<TrunoCrazyApp> {
         onLoggedIn: (session) => setState(() => _session = session),
       );
     } else {
-      home = HomePage(session: _session!, onLogout: _logout);
+      home = HomePage(
+        session: _session!,
+        onLogout: _logout,
+        listCards: _listCards,
+      );
     }
 
     return MaterialApp(
